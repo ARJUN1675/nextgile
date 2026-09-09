@@ -6,8 +6,10 @@ from pydantic import BaseModel, EmailStr
 app = FastAPI(title="Nexgile WealthAgent API", version="1.0.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:4200"],
-    allow_credentials=True,
+    # This demo uses a bearer-style token rather than browser cookies, so it
+    # can safely allow a separately deployed Vercel frontend.
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
